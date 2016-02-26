@@ -1,2 +1,1 @@
-import Hello from './hello.jsx';
-import Counter from './counter.jsx';
+import Caisson from './caisson.jsx';
