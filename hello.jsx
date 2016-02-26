@@ -2,9 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
  
 class Hello extends React.Component {
+
   render() {
-    return <h1>Hello</h1>
+    return <font size='+1'>Hello, {this.props.name} World!</font>
   }
+
 }
 
-ReactDOM.render(<Hello/>, document.getElementById('hello'));
+ReactDOM.render(<Hello name="Fareoffice" />, document.getElementById('hello'));
