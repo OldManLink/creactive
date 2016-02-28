@@ -13,6 +13,10 @@ class Entry extends React.Component {
         this.setState({value: event.target.value});
     }
 
+    value() {
+        return this.state.value
+    }
+
     render() {
         return <div>
             {this.props.name}:
