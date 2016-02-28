@@ -10,7 +10,7 @@ class Luds extends React.Component {
     }
 
     update(event) {
-        var newState = this.state;
+        var newState = {};
         newState[event.target.value] = event.target.checked;
         this.setState(newState);
     }
