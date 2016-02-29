@@ -31,7 +31,6 @@ class Caisson extends React.Component {
     hideShow(event) {
         var hide = event.target.checked;
         this.setState({hide: hide});
-        this.context.hide(hide);
         this.oldEntry.hide(hide);
         this.newEntry.hide(hide);
     }
@@ -46,7 +45,7 @@ class Caisson extends React.Component {
             <div>
                 <Header line1={this.state.line1} line2={this.state.line2}/>
                 <div id="contents">
-                    <Entry ref={(ref) => this.context = ref} name="Context" placeholder="Enter Context" hide={this.state.hide}/>
+                    <Entry ref={(ref) => this.context = ref} name="Context" placeholder="Enter Context"/>
                     <Entry ref={(ref) => this.oldEntry = ref} name="Old" placeholder="Old Password" hide={this.state.hide} extended={true} />
                     <Entry ref={(ref) => this.newEntry = ref} name="New" placeholder="New Password" hide={this.state.hide} extended={true} />
                     <button id='but_submit' onClick={ e => this.generate(e)}>Generate</button>
