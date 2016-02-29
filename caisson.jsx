@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Header from './header.jsx';
 import Entry from './entry.jsx';
+import CopyToClipboard from 'react-copy-to-clipboard';
 
 class Caisson extends React.Component {
     constructor(props) {
@@ -14,6 +15,7 @@ class Caisson extends React.Component {
         this.context = null;
         this.oldEntry = null;
         this.newEntry = null;
+        this.copyButton = null;
     }
 
     generate() {
@@ -22,7 +24,8 @@ class Caisson extends React.Component {
         + JSON.stringify(this.oldEntry.value()) + JSON.stringify(this.oldEntry.luds()) + this.oldEntry.length() + "\n"
         + JSON.stringify(this.newEntry.value()) + JSON.stringify(this.newEntry.luds()) + this.newEntry.length() + "\n"
         + JSON.stringify(this.state.hide));
-        this.setState({line1: "Passwords", line2: "Generated"});
+        this.setState({line1: "Passwords", line2: "Generated", clip: this.context.value()});
+        this.copyButton.id = 'but_copy';
     }
 
     hideShow(event) {
@@ -31,6 +34,11 @@ class Caisson extends React.Component {
         this.context.hide(hide);
         this.oldEntry.hide(hide);
         this.newEntry.hide(hide);
+    }
+
+    onCopy() {
+        this.setState({copied: true});
+        alert("Copied!");
     }
 
     render() {
@@ -46,6 +54,9 @@ class Caisson extends React.Component {
                         <input type='checkbox' value='hide' checked={this.state.hide} onChange={e => this.hideShow(e)}/>
                         <a id='hide'> hide</a><br/>
                     </div>
+                    <CopyToClipboard text={this.state.clip} onCopy={(ev) => this.onCopy(ev)}>
+                        <button ref={(ref) => this.copyButton = ref}>Copy</button>
+                    </CopyToClipboard>
                 </div>
             </div>
         )
